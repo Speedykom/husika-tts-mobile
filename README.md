@@ -3,6 +3,14 @@
 A React Native mobile app for experimenting with multilingual text-to-speech.
 
 
+
+<div align="center">
+
+https://github.com/user-attachments/assets/b4c1a02b-ceba-4eb3-aad6-be5314c64430
+
+</div>
+
+
 ## About
 
 Husika TTS lets you preview TTS voices across 11 languages using two synthesis engines: Speedykom Cloud for high-quality, fine-tuned models and eSpeak NG for lightweight offline fallback. The app adapts its UI based on network connectivity, hiding cloud-only voices when the device is offline.
