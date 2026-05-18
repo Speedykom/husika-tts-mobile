@@ -1,0 +1,10 @@
+# Gradle build outputs
+build/
+
+# CMake build cache
+.cxx/
+
+# Compiled native binaries
+*.so
+*.o
+*.a
