@@ -1,6 +1,36 @@
-# Husika TTS Boilerplate
+# Husika TTS — Mobile App
 
-A React Native mobile app for experimenting with multilingual text-to-speech.
+The mobile app of the **Husika early-warning platform** — preview and play
+multilingual text-to-speech voices for the languages of the Greater Horn of Africa.
+
+> **Developed by [Speedykom GmbH](https://speedykom.de)** for the Husika
+> early-warning platform operated by **ICPAC** (IGAD Climate Prediction and
+> Applications Centre). Produced under the **Peaceful and Resilient Borderlands
+> Programme (PRBP)**, implemented by **GIZ** within the **SCIDA III** framework in
+> support of **IGAD**, and **co-funded by the European Union and the German Federal
+> Ministry for Economic Cooperation and Development (BMZ)**.
+
+<p align="center">
+  <img src="assets/logos/eu.png" alt="Co-funded by the European Union" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/german-cooperation-bmz.png" alt="German Cooperation — BMZ" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/giz.png" alt="Implemented by GIZ" height="52">
+</p>
+
+<p align="center">
+  <img src="assets/logos/igad.png" alt="IGAD" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/icpac.png" alt="ICPAC" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/speedykom.png" alt="Developed by Speedykom" height="52">
+</p>
+
+<p align="center"><sub>
+  <b>Co-funded by the European Union</b> and the German Federal Ministry for
+  Economic Cooperation and Development (BMZ) &nbsp;·&nbsp; <b>Implemented by GIZ</b>
+  &nbsp;·&nbsp; In partnership with IGAD &amp; ICPAC &nbsp;·&nbsp; Developed by Speedykom
+</sub></p>
 
 
 
@@ -51,7 +81,7 @@ React Compiler and the New Architecture are enabled.
 
 ```bash
 git clone <repository-url>
-cd husika-tts-boilerplate
+cd husika-tts-mobile
 npm install
 ```
 
@@ -106,6 +136,21 @@ You can also run on a physical device using [Expo Go](https://expo.dev/go) or a 
 | `npm run lint` | Run ESLint |
 | `npm run reset-project` | Reset to a blank app directory |
 
-## License
+## Credits & License
 
-This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
+**Developed by Speedykom GmbH** for the Husika early-warning platform operated by
+**ICPAC** (IGAD Climate Prediction and Applications Centre). Produced under the
+**Peaceful and Resilient Borderlands Programme (PRBP)**, implemented by **GIZ**
+within the **SCIDA III** framework in support of **IGAD**, and **co-funded by the
+European Union and the German Federal Ministry for Economic Cooperation and
+Development (BMZ)**.
+
+Copyright (c) 2026 Speedykom GmbH and Deutsche Gesellschaft für Internationale
+Zusammenarbeit (GIZ) GmbH. Licensed under the Apache License 2.0 — see
+[LICENSE](./LICENSE). Attribution that must be preserved in derivative works is
+listed in [NOTICE](./NOTICE).
+
+> **Disclaimer.** Views and opinions expressed are those of the authors only and
+> do not necessarily reflect those of the European Union, BMZ, GIZ, IGAD or ICPAC.
+> Neither the European Union nor any other funding or implementing party can be
+> held responsible for them.
