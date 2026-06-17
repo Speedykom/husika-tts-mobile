@@ -1,50 +1,156 @@
-# Welcome to your Expo app 👋
+# Husika TTS — Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The mobile app of the **Husika early-warning platform** — preview and play
+multilingual text-to-speech voices for the languages of the Greater Horn of Africa.
 
-## Get started
+> **Developed by [Speedykom GmbH](https://speedykom.de)** for the Husika
+> early-warning platform operated by **ICPAC** (IGAD Climate Prediction and
+> Applications Centre). Produced under the **Peaceful and Resilient Borderlands
+> Programme (PRBP)**, implemented by **GIZ** within the **SCIDA III** framework in
+> support of **IGAD**, and **co-funded by the European Union and the German Federal
+> Ministry for Economic Cooperation and Development (BMZ)**.
 
-1. Install dependencies
+<p align="center">
+  <img src="assets/logos/eu.png" alt="Co-funded by the European Union" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/german-cooperation-bmz.png" alt="German Cooperation — BMZ" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/giz.png" alt="Implemented by GIZ" height="52">
+</p>
 
-   ```bash
-   npm install
-   ```
+<p align="center">
+  <img src="assets/logos/igad.png" alt="IGAD" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/icpac.png" alt="ICPAC" height="52">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/logos/speedykom.png" alt="Developed by Speedykom" height="52">
+</p>
 
-2. Start the app
+<p align="center"><sub>
+  <b>Co-funded by the European Union</b> and the German Federal Ministry for
+  Economic Cooperation and Development (BMZ) &nbsp;·&nbsp; <b>Implemented by GIZ</b>
+  &nbsp;·&nbsp; In partnership with IGAD &amp; ICPAC &nbsp;·&nbsp; Developed by Speedykom
+</sub></p>
 
-   ```bash
-   npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+<div align="center">
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+https://github.com/user-attachments/assets/b4c1a02b-ceba-4eb3-aad6-be5314c64430
 
-## Get a fresh project
+</div>
 
-When you're ready, run:
+
+## About
+
+Husika TTS lets you preview TTS voices across 11 languages using two synthesis engines: Speedykom Cloud for high-quality, fine-tuned models and eSpeak NG for lightweight offline fallback. The app adapts its UI based on network connectivity, hiding cloud-only voices when the device is offline.
+
+This project is part of the Husika TTS platform, maintained by [Speedykom Group](https://speedykom.de) -- a Germany-based software company focused on digital public infrastructure and language technology.
+
+## Features
+
+- 11 languages: English, French, Arabic, Swahili, Amharic, Somali, Oromo, Tigrinya, Kinyarwanda, Kirundi, Luganda
+- Two TTS engines: Speedykom Cloud (requires network) and eSpeak NG (offline)
+- Network-aware UI -- cloud voices are hidden when offline, with status banners and retry
+- Search and filter languages by name or engine type (All, Cloud, Offline)
+- Per-language detail screen with sample phrases and custom text input
+- Material Design 3 theming
+
+## Tech Stack
+
+| Category | Technology |
+|---|---|
+| Framework | React Native 0.81, Expo 54 |
+| Navigation | Expo Router 6 (file-based routing) |
+| UI | React Native Paper (Material Design 3) |
+| State | TanStack React Query 5 |
+| Networking | @react-native-community/netinfo |
+| Language | TypeScript 5.9 |
+| Linting | ESLint with eslint-config-expo |
+
+React Compiler and the New Architecture are enabled.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (LTS recommended)
+- npm
+
+### Installation
 
 ```bash
-npm run reset-project
+git clone <repository-url>
+cd husika-tts-mobile
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Running the app
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+From the dev server, press:
+- `a` to open on Android (emulator or device)
+- `i` to open on iOS (simulator or device)
+- `w` to open in a web browser
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+You can also run on a physical device using [Expo Go](https://expo.dev/go) or a [development build](https://docs.expo.dev/develop/development-builds/introduction/).
 
-## Join the community
+## Project Structure
 
-Join our community of developers creating universal apps.
+```
+.
+├── app/                       # Screens (file-based routing)
+│   ├── _layout.tsx            # Root layout with providers
+│   ├── index.tsx              # Welcome screen
+│   ├── languages.tsx          # Language list with search and filters
+│   └── language/
+│       └── [code].tsx         # Language detail (samples, custom input)
+├── components/                # Reusable UI components
+│   └── ui/                    # Low-level UI primitives
+├── constants/
+│   └── theme.ts               # Color and font constants
+├── data/
+│   └── languages.ts           # Language definitions and voice mappings
+├── hooks/
+│   └── use-network-status.ts  # Network connectivity hook
+├── theme/
+│   └── paper-theme.ts         # Material Design 3 theme config
+├── assets/images/             # App icon, logos
+├── app.json                   # Expo configuration
+├── eas.json                   # EAS Build configuration
+├── tsconfig.json              # TypeScript config (uses @/* path alias)
+└── package.json
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Available Scripts
+
+| Command | Description |
+|---|---|
+| `npm start` | Start the Expo dev server |
+| `npm run android` | Start on Android |
+| `npm run ios` | Start on iOS |
+| `npm run web` | Start on Web |
+| `npm run lint` | Run ESLint |
+| `npm run reset-project` | Reset to a blank app directory |
+
+## Credits & License
+
+**Developed by Speedykom GmbH** for the Husika early-warning platform operated by
+**ICPAC** (IGAD Climate Prediction and Applications Centre). Produced under the
+**Peaceful and Resilient Borderlands Programme (PRBP)**, implemented by **GIZ**
+within the **SCIDA III** framework in support of **IGAD**, and **co-funded by the
+European Union and the German Federal Ministry for Economic Cooperation and
+Development (BMZ)**.
+
+Copyright (c) 2026 Speedykom GmbH and Deutsche Gesellschaft für Internationale
+Zusammenarbeit (GIZ) GmbH. Licensed under the Apache License 2.0 — see
+[LICENSE](./LICENSE). Attribution that must be preserved in derivative works is
+listed in [NOTICE](./NOTICE).
+
+> **Disclaimer.** Views and opinions expressed are those of the authors only and
+> do not necessarily reflect those of the European Union, BMZ, GIZ, IGAD or ICPAC.
+> Neither the European Union nor any other funding or implementing party can be
+> held responsible for them.
