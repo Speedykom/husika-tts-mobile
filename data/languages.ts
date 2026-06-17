@@ -5,8 +5,8 @@ export interface Language {
   iso: string;          // ISO 3166-1 alpha-2 (lowercase) for the flag
   name: string;         // English name
   nativeName: string;   // Native script
-  engine: Engine;       // 'cloud' = Speedykom, 'offline' = eSpeak NG
-  voice: string;        // mock voice tag
+  engine: Engine;       // 'cloud' = Husika API, 'offline' = eSpeak NG
+  voice: string;        // offline: eSpeak voice tag; cloud: API lang_code
   samples: string[];
 }
 
@@ -17,7 +17,7 @@ export const LANGUAGES: Language[] = [
     name: 'English',
     nativeName: 'English',
     engine: 'cloud',
-    voice: 'speedykom-en-v2',
+    voice: 'en',
     samples: [
       'Hello, how are you today?',
       'Welcome to the Husika TTS experimentation app.',
@@ -30,7 +30,7 @@ export const LANGUAGES: Language[] = [
     name: 'French',
     nativeName: 'Français',
     engine: 'cloud',
-    voice: 'speedykom-fr-v1',
+    voice: 'fr',
     samples: [
       'Bonjour, comment allez-vous?',
       'Bienvenue dans l’application Husika.',
@@ -43,7 +43,7 @@ export const LANGUAGES: Language[] = [
     name: 'Arabic',
     nativeName: 'العربية',
     engine: 'cloud',
-    voice: 'speedykom-ar-v1',
+    voice: 'ara',
     samples: [
       'مرحبًا، كيف حالك اليوم؟',
       'أهلاً بك في تطبيق هوسيكا للتجارب.',
@@ -56,7 +56,7 @@ export const LANGUAGES: Language[] = [
     name: 'Swahili',
     nativeName: 'Kiswahili',
     engine: 'cloud',
-    voice: 'speedykom-sw-v1',
+    voice: 'swa',
     samples: [
       'Habari, hujambo leo?',
       'Karibu kwenye programu ya Husika.',
@@ -69,11 +69,76 @@ export const LANGUAGES: Language[] = [
     name: 'Amharic',
     nativeName: 'አማርኛ',
     engine: 'cloud',
-    voice: 'speedykom-am-v1',
+    voice: 'amh',
     samples: [
       'ሰላም፣ ዛሬ እንዴት ነህ?',
       'ወደ ሁሲካ መተግበሪያ እንኳን በደህና መጡ።',
       'ዛሬ ጠዋት የአየር ሁኔታ ቆንጆ ነው።',
+    ],
+  },
+  {
+    code: 'nue',
+    iso: 'ss',
+    name: 'Nuer',
+    nativeName: 'Thok Naath',
+    engine: 'cloud',
+    voice: 'nue',
+    samples: [
+      'Malo, i jäl dɔ?',
+      'Bi ɣa röödä kɔc Husika.',
+      'Kɔc ciɛŋ bäär cï jäŋ piëth.',
+    ],
+  },
+  {
+    code: 'din',
+    iso: 'ss',
+    name: 'Dinka',
+    nativeName: 'Thuɔŋjäŋ',
+    engine: 'cloud',
+    voice: 'din',
+    samples: [
+      'Acin, yïn abï ŋot?',
+      'Yin adhiëk bï Husika.',
+      'Wëi bï lɔŋ yen.',
+    ],
+  },
+  {
+    code: 'pko',
+    iso: 'ke',
+    name: 'Pokoot',
+    nativeName: 'Pökoot',
+    engine: 'cloud',
+    voice: 'pko',
+    samples: [
+      'Chamuge, kono in?',
+      'Akwany Husika.',
+      'Akitabach asis.',
+    ],
+  },
+  {
+    code: 'tuv',
+    iso: 'ke',
+    name: 'Turkana',
+    nativeName: 'Ng\'aturkana',
+    engine: 'cloud',
+    voice: 'tuv',
+    samples: [
+      'Ejok, idio ekitóm?',
+      'Awuono Husika.',
+      'Esioi kijiji.',
+    ],
+  },
+  {
+    code: 'kdj',
+    iso: 'ug',
+    name: 'Karamojong',
+    nativeName: 'Ngakarimojong',
+    engine: 'cloud',
+    voice: 'kdj',
+    samples: [
+      'Ejok, bo iyong?',
+      'Akweet Husika.',
+      'Eyalama noi.',
     ],
   },
   {

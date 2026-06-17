@@ -1,11 +1,12 @@
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import CountryFlag from 'react-native-country-flag';
 import {
     Button,
     IconButton,
+    Snackbar,
     Surface,
     Text,
     TextInput,
@@ -14,6 +15,7 @@ import {
 
 import { getLanguage } from '@/data/languages';
 import { useNetworkStatus } from '@/hooks/use-network-status';
+import { useTTS } from '@/hooks/use-tts';
 
 export default function LanguageDetailScreen() {
   const theme = useTheme();
@@ -27,7 +29,7 @@ export default function LanguageDetailScreen() {
 
 
   const [text, setText] = useState('');
-  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+  const { speak, status: ttsStatus, error: ttsError, activeText } = useTTS({ languageCode: code ?? '' });
 
   if (!language) {
     return (
@@ -42,12 +44,7 @@ export default function LanguageDetailScreen() {
 
   const isCloud = language.engine === 'cloud';
   const engineLabel = isCloud ? 'Speedykom · Cloud' : 'eSpeak NG · Offline';
-
-  const fakePlay = (index: number) => {
-    if (blockedOffline) return;
-    setPlayingIndex(index);
-    setTimeout(() => setPlayingIndex(null), 1200);
-  };
+  const isBusy = ttsStatus === 'loading' || ttsStatus === 'playing';
 
   return (
     <View style={[styles.root, { backgroundColor: theme.colors.background }]}>
@@ -125,8 +122,8 @@ export default function LanguageDetailScreen() {
         {language.samples.map((sample, i) => (
           <Pressable
             key={i}
-            onPress={() => fakePlay(i)}
-            disabled={blockedOffline}
+            onPress={() => !blockedOffline && !isBusy && speak(sample)}
+            disabled={blockedOffline || isBusy}
           >
             <Surface
               style={[
@@ -141,14 +138,22 @@ export default function LanguageDetailScreen() {
                   {sample}
                 </Text>
               </View>
-              <IconButton
-                icon={playingIndex === i ? 'volume-high' : 'play-circle'}
-                iconColor={theme.colors.primary}
-                size={32}
-                disabled={blockedOffline}
-                onPress={() => fakePlay(i)}
-                style={{ margin: 0 }}
-              />
+              {ttsStatus === 'loading' && activeText === sample ? (
+                <ActivityIndicator
+                  size={24}
+                  color={theme.colors.primary}
+                  style={{ margin: 8 }}
+                />
+              ) : (
+                <IconButton
+                  icon={ttsStatus === 'playing' && activeText === sample ? 'volume-high' : 'play-circle'}
+                  iconColor={theme.colors.primary}
+                  size={32}
+                  disabled={blockedOffline || isBusy}
+                  onPress={() => speak(sample)}
+                  style={{ margin: 0 }}
+                />
+              )}
             </Surface>
           </Pressable>
         ))}
@@ -179,12 +184,13 @@ export default function LanguageDetailScreen() {
             </Text>
             <Button
               mode="contained"
-              icon="play"
-              disabled={!text.trim() || blockedOffline}
-              onPress={() => fakePlay(-1)}
+              icon={ttsStatus === 'loading' && activeText === text ? undefined : 'play'}
+              disabled={!text.trim() || blockedOffline || isBusy}
+              onPress={() => speak(text)}
               style={styles.speakBtn}
+              loading={ttsStatus === 'loading' && activeText === text}
             >
-              Speak
+              {ttsStatus === 'playing' && activeText === text ? 'Playing…' : 'Speak'}
             </Button>
           </View>
         </Surface>
@@ -195,6 +201,13 @@ export default function LanguageDetailScreen() {
             : 'Tap any phrase to preview · pull-to-refresh for new samples'}
         </Text>
       </ScrollView>
+      <Snackbar
+        visible={ttsStatus === 'error' && !!ttsError}
+        onDismiss={() => {}}
+        duration={4000}
+      >
+        {ttsError ?? 'TTS error'}
+      </Snackbar>
     </View>
   );
 }
