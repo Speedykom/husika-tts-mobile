@@ -1,4 +1,39 @@
-export type Engine = 'cloud' | 'offline';
+export type Engine = 'cloud' | 'offline' | 'piper';
+
+export interface PiperModelSpec {
+  onnx: string;
+  config: string;
+  filename: string;
+}
+
+export const PIPER_MODEL_URLS: Record<string, PiperModelSpec> = {
+  'en-piper': {
+    onnx: 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/lessac/medium/en_US-lessac-medium.onnx?download=true',
+    config: 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json?download=true',
+    filename: 'en_US-lessac-medium',
+  },
+  'fr-piper': {
+    onnx: 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx?download=true',
+    config: 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx.json?download=true',
+    filename: 'fr_FR-siwis-medium',
+  },
+  'ar-piper': {
+    onnx: 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ar/ar_JO/kareem/medium/ar_JO-kareem-medium.onnx?download=true',
+    config: 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/ar/ar_JO/kareem/medium/ar_JO-kareem-medium.onnx.json?download=true',
+    filename: 'ar_JO-kareem-medium',
+  },
+  'sw-piper': {
+    onnx: 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/sw/sw_CD/lanfrica/medium/sw_CD-lanfrica-medium.onnx?download=true',
+    config: 'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/sw/sw_CD/lanfrica/medium/sw_CD-lanfrica-medium.onnx.json?download=true',
+    filename: 'sw_CD-lanfrica-medium',
+  },
+  // Tigrinya: custom-trained model — update URL once published to a release
+  'ti-piper': {
+    onnx: 'https://github.com/TigrinyaNLP/tigrinya-nlp/releases/download/v1.0/tiPiper.onnx',
+    config: 'https://github.com/TigrinyaNLP/tigrinya-nlp/releases/download/v1.0/tiPiper.onnx.json',
+    filename: 'ti-piper',
+  },
+};
 
 export interface Language {
   code: string;
@@ -221,5 +256,75 @@ export const LANGUAGES: Language[] = [
   },
 ];
 
+export const PIPER_LANGUAGES: Language[] = [
+  {
+    code: 'en-piper',
+    iso: 'gb',
+    name: 'English',
+    nativeName: 'English',
+    engine: 'piper',
+    voice: 'piper-en',
+    samples: [
+      'Hello, how are you today?',
+      'Welcome to the Husika TTS experimentation app.',
+      'The weather is beautiful this morning.',
+    ],
+  },
+  {
+    code: 'fr-piper',
+    iso: 'fr',
+    name: 'French',
+    nativeName: 'Français',
+    engine: 'piper',
+    voice: 'piper-fr',
+    samples: [
+      'Bonjour, comment allez-vous?',
+      "Bienvenue dans l'application Husika.",
+      "Le temps est magnifique aujourd'hui.",
+    ],
+  },
+  {
+    code: 'ar-piper',
+    iso: 'sa',
+    name: 'Arabic',
+    nativeName: 'العربية',
+    engine: 'piper',
+    voice: 'piper-ar',
+    samples: [
+      'مرحبًا، كيف حالك اليوم؟',
+      'أهلاً بك في تطبيق هوسيكا للتجارب.',
+      'الطقس جميل هذا الصباح.',
+    ],
+  },
+  {
+    code: 'sw-piper',
+    iso: 'ke',
+    name: 'Swahili',
+    nativeName: 'Kiswahili',
+    engine: 'piper',
+    voice: 'piper-sw',
+    samples: [
+      'Habari, hujambo leo?',
+      'Karibu kwenye programu ya Husika.',
+      'Hali ya hewa ni nzuri asubuhi hii.',
+    ],
+  },
+  {
+    code: 'ti-piper',
+    iso: 'er',
+    name: 'Tigrinya',
+    nativeName: 'ትግርኛ',
+    engine: 'piper',
+    voice: 'piper-ti',
+    samples: [
+      'ሰላም፣ ሎሚ ከመይ ኣለኻ?',
+      'ናብ ኣፕልኬሽን ሁሲካ ብደሓን ምጻእ።',
+      'ሎሚ ንግሆ ኩነታት ኣየር ጽቡቕ እዩ።',
+    ],
+  },
+];
+
+export const ALL_LANGUAGES = [...LANGUAGES, ...PIPER_LANGUAGES];
+
 export const getLanguage = (code: string) =>
-  LANGUAGES.find((l) => l.code === code);
+  ALL_LANGUAGES.find((l) => l.code === code);
