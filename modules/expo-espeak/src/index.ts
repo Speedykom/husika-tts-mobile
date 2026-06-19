@@ -13,6 +13,11 @@ interface EspeakNativeModule {
     speed: number,
     pitch: number
   ): Promise<SynthesizeResult>;
+  piperSynthesizeAsync(
+    text: string,
+    onnxPath: string,
+    configPath: string
+  ): Promise<SynthesizeResult>;
 }
 
 const ExpoEspeak = requireNativeModule<EspeakNativeModule>('ExpoEspeak');
