@@ -43,7 +43,12 @@ export default function LanguageDetailScreen() {
   }
 
   const isCloud = language.engine === 'cloud';
-  const engineLabel = isCloud ? 'Speedykom · Cloud' : 'eSpeak NG · Offline';
+  const isPiper = language.engine === 'piper';
+  const engineLabel = isCloud
+    ? 'Speedykom · Cloud'
+    : isPiper
+    ? 'Piper · On-device'
+    : 'eSpeak NG · Offline';
   const isBusy = ttsStatus === 'loading' || ttsStatus === 'playing';
 
   return (
@@ -75,6 +80,8 @@ export default function LanguageDetailScreen() {
               {
                 backgroundColor: isCloud
                   ? theme.colors.primaryContainer
+                  : isPiper
+                  ? theme.colors.tertiaryContainer
                   : theme.colors.secondaryContainer,
               },
             ]}
@@ -85,6 +92,8 @@ export default function LanguageDetailScreen() {
                 {
                   color: isCloud
                     ? theme.colors.onPrimaryContainer
+                    : isPiper
+                    ? theme.colors.onTertiaryContainer
                     : theme.colors.onSecondaryContainer,
                 },
               ]}
